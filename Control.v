@@ -36,7 +36,7 @@ module MIPS_control_unit (ALUOp,
  //output       IorD;
    output       IRWrite;
    output       PCWrite;
-   output       PCWriteCond;
+ //output       PCWriteCond;
    output [3:0] current_state;
    output [3:0] next_state;
 	output		 MemSrc;
@@ -57,10 +57,8 @@ module MIPS_control_unit (ALUOp,
    reg          RegWrite;
    reg          MemRead;
    reg          MemWrite;
-   reg          IorD;
    reg          IRWrite;
    reg          PCWrite;
-   reg          PCWriteCond;
 
    //state flip-flops
    reg [3:0]    current_state;
@@ -68,15 +66,21 @@ module MIPS_control_unit (ALUOp,
 
    //state definitions
    parameter    Fetch = 0;
-   parameter    Decode = 1;
-   parameter    Mem1 = 2;
-   parameter    LW1 = 3;
-   parameter    LW2 = 4;
-   parameter    SW1 = 5;
-   parameter    R_Execution = 6;
-   parameter    R_Write = 7;
-   parameter    Branch = 8;
-   parameter    Jump = 9;
+   parameter    Other = 1;
+   parameter    RType = 2;
+	parameter    RWrite = 3;
+	parameter    LWSW = 4;
+	parameter    SW = 5;
+	parameter    LW1 = 6;
+	parameter    LW2 = 7;
+	parameter    Imm = 8;
+	parameter    Imm2 = 9;
+	parameter    jr = 10;
+	parameter    jump = 11;
+	parameter    branch = 12;
+	
+	parameter    in = 13;
+	parameter    out = 14;
 
    //register calculation
    always @ (posedge CLK, posedge Reset)
@@ -97,66 +101,44 @@ module MIPS_control_unit (ALUOp,
         MemWrite = 0; 
         IRWrite = 0; 
         PCWrite = 0;
-        PCWriteCond = 0;
         
         case (current_state)
           
           Fetch:
             begin
+					MemSrc = 0;
                MemRead = 1;
-               SrcA = 0;
-               IorD = 0;
                IRWrite =  1;
+					PCWrite = 1;
+					SrcA = 0;
                SrcB = 1;
-               ALUOp = 0;
-               PCWrite = 1;
-               PCSrc = 0;
+               
+               
+               ALUOp = 3'b010;
+               
             end 
                          
-          Decode:
-            begin
-               SrcA = 0;
-               SrcB = 3;
-               ALUOp = 0;
-            end
-        
-          R_Execution:
+          Other:
             begin
                SrcA = 1;
                SrcB = 0;
-               ALUOp = 2;
+               ALUOp = 3'b010;
             end
         
-          R_Write:
-            begin
-               RegDest = 1;
-               RegWrite = 1;
-               MemtoReg = 0;
-            end
-        
-          Branch:
-            begin
-               SrcA = 1;
-               SrcB = 0;
-               ALUOp = 1;
-               PCWriteCond = 1;
-               PCSrc = 1;
-            end
-        
-          Jump:
-            begin
-               PCWrite = 1;
-               PCSrc = 2;
-            end
-          
-          Mem1:
-            begin
-               $display ("Mem1 outputs not implemented"); 
-            end
-        
-        
+          RType:
+				begin
+					SrcA = 1;
+					SrcB = 0;
+					ALUOp = Opcode;
+				end
+			RWrite:
+				begin
+					
+				end
+				
+			
           default:
-            begin $display ("not implemented"); end
+            begin $display ("%i not implemented", current_state); end
           
         endcase
      end
@@ -171,11 +153,11 @@ module MIPS_control_unit (ALUOp,
           
           Fetch:
             begin
-               next_state = Decode;
+               next_state = Other;
                $display("In Fetch, the next_state is %d", next_state);
             end
           
-          Decode: 
+          Other: 
             begin       
                $display("The opcode is %d", Opcode);
                case (Opcode)
@@ -210,7 +192,7 @@ module MIPS_control_unit (ALUOp,
                    end
                endcase  
                
-               $display("In Decode, the next_state is %d", next_state);
+               $display("In Other, the next_state is %d", next_state);
             end
           
           R_Execution:
