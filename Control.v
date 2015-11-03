@@ -61,8 +61,8 @@ module MIPS_control_unit (ALUOp,
    reg          PCWrite;
 
    //state flip-flops
-   reg [3:0]    current_state;
-   reg [3:0]    next_state;
+   reg [4:0]    current_state;
+   reg [4:0]    next_state;
 
    //state definitions
    parameter    Fetch = 0;
@@ -75,12 +75,16 @@ module MIPS_control_unit (ALUOp,
 	parameter    LW2 = 7;
 	parameter    Imm = 8;
 	parameter    Imm2 = 9;
-	parameter    jr = 10;
-	parameter    jump = 11;
-	parameter    branch = 12;
+	parameter    Jal1 = 10;
+	parameter    Jal2 = 11;
 	
-	parameter    in = 13;
-	parameter    out = 14;
+	parameter    jr = 12;
+	parameter    jump = 13;
+	parameter    brancheq = 14;
+	parameter    branchne = 15;
+	
+	parameter    in = 16;
+	parameter    out = 17;
 
    //register calculation
    always @ (posedge CLK, posedge Reset)
@@ -133,9 +137,102 @@ module MIPS_control_unit (ALUOp,
 				end
 			RWrite:
 				begin
-					
+					RegWrite = 1;
+					MemtoReg = 2'b01;
+					RegDest = 1;
+				end
+			LWSW:
+				begin
+					SrcA = 1;
+					SrcB = 2'b10;
+					ALUOp = 3'b010;
+				end
+			SW:
+				begin
+					MemWrite = 1;
+					MemSrc = 1;
+				end
+			LW1:
+				begin
+					MemRead = 1;
+					MemSrc = 1;
+				end
+			LW2:
+				begin
+				//make sure this is right
+					RegWrite = 1;
+					MemToReg = 0;
+				end
+			Imm:
+				begin
+					SrcA = 1;
+					SrcB = 2'b10;
+					ALUOp = Opcode;
+				end
+			Imm2:
+				begin
+					RegWrite = 1;
+					MemtoReg = 2'b01;
+					RegDest = 1;
+				end
+			Jal1:
+				begin
+					SrcA = 0;
+					SrcB = 2'b01;
+					ALUOp = 3'b010;
+				end
+			Jal2:
+				begin
+					RegWrite = 1;
+					MemtoReg = 2'b01;
+					RegDest = 3;//ra
+					PCWrite = 1;
+					PCSrc = 1;
 				end
 				
+			jr:
+				begin
+					SrcA = 1;
+					SrcB = 0;
+					ALUOp = 3'b010;
+					PCWrite = 1;
+					PCSrc = 0;
+				end
+			
+			jump:
+				begin
+					PCWrite = 1;
+					PCSrc = 2'b01;
+				end
+			brancheq:
+				begin
+					SrcA = 1;
+					SrcB = 0;
+					ALUOp = 3'b011;
+					BranchCond = 1;
+					PCWrite = 1;
+					PCSrc = 0;
+				end
+			branchne:
+				begin
+					SrcA = 1;
+					SrcB = 0;
+					ALUOp = 3'b011;
+					BranchCond = 0;
+					PCWrite = 1;
+					PCSrc = 0;
+				end
+				
+			in:
+				begin
+					RegWrite = 1;
+					MemToReg = 2'b10;
+					RegDest = 1;
+				end
+			out:
+				begin
+					OutputWrite = 1;
+				end
 			
           default:
             begin $display ("%i not implemented", current_state); end
