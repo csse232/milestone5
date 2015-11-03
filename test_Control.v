@@ -76,9 +76,9 @@ module test_Control;
 		#100;
 		forever
 			begin
-				clock = 0;
+				CLK = 0;
 				#10
-				clock = 1'b1;
+				CLK = 1'b1;
 				#10;
 			end
 	end	
@@ -93,9 +93,41 @@ module test_Control;
 
 		// Wait 100 ns for global reset to finish
 		#100;
-        
-		// Add stimulus here
-
+      
+		
+		
+		Opcode = 0; funk = 0; //generic R-Type
+		$display("\n\nTESTING R-TYPES\n\n");#100;
+		
+		Opcode = 4'b0001; //imm
+		$display("\n\nTESTING IMMEDIATES\n\n");#100;
+		
+		Opcode = 4'b0010; //lw
+		$display("\n\nTESTING LW\n\n");#100;
+		
+		Opcode = 4'b0011; //sw
+		$display("\n\nTESTING SW\n\n");#100;
+		
+		Opcode = 4'b1001; //j
+		$display("\n\nTESTING JUMP\n\n");#100;
+		
+		Opcode = 4'b1010; //jal
+		$display("\n\nTESTING JAL\n\n");#100;
+		
+		Opcode = 4'b1011; //jr
+		$display("\n\nTESTING JR\n\n");#100;
+		
+		Opcode = 4'b0111; //beq
+		$display("\n\nTESTING BEQ\n\n");#100;
+		
+		Opcode = 4'b1000; //bne
+		$display("\n\nTESTING BNE\n\n");#100;
+		
+		Opcode = 4'b1100; funk = 3'b000; //in
+		$display("\n\nTESTING IN\n\n");#100;
+		
+		Opcode = 4'b1100; funk = 3'b001; //out
+		$display("\n\nTESTING OUT\n\n");#100;
 	end
       
 endmodule

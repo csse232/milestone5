@@ -54,13 +54,16 @@ module MIPS_control_unit (ALUOp,
    reg [1:0]    PCSrc;
    reg [1:0]    SrcB;
    reg          SrcA;
-   reg          MemtoReg;
+   reg [1:0]     MemtoReg;
    reg          RegDest;
    reg          RegWrite;
    reg          MemRead;
    reg          MemWrite;
    reg          IRWrite;
    reg          PCWrite;
+	reg          MemSrc;
+	reg          BranchCond;
+	reg          OutputWrite;
 
    //state flip-flops
    reg [4:0]    current_state;
@@ -163,7 +166,7 @@ module MIPS_control_unit (ALUOp,
 				begin
 				//make sure this is right
 					RegWrite = 1;
-					MemToReg = 0;
+					MemtoReg = 0;
 				end
 			Imm:
 				begin
@@ -228,7 +231,7 @@ module MIPS_control_unit (ALUOp,
 			in:
 				begin
 					RegWrite = 1;
-					MemToReg = 2'b10;
+					MemtoReg = 2'b10;
 					RegDest = 1;
 				end
 			out:
@@ -293,17 +296,17 @@ module MIPS_control_unit (ALUOp,
 						
 						4'b0001://addi
 							begin
-								next_state = imm;
+								next_state = Imm;
 								$display("The next state is imm");
 							end
 						4'b0100://ori
 							begin
-								next_state = imm;
+								next_state = Imm;
 								$display("The next state is imm");
 							end
 						4'b0101://andi
 							begin
-								next_state = imm;
+								next_state = Imm;
 								$display("The next state is imm");
 							end
                  
@@ -409,12 +412,12 @@ module MIPS_control_unit (ALUOp,
 					$display("In Fetch, the next_state is %d", next_state);
 				end
 			 
-			Brancheq:
+			brancheq:
             begin
                next_state = Fetch;
                $display("In Branch, the next_state is %d", next_state);
             end
-			Branchne:
+			branchne:
             begin
                next_state = Fetch;
                $display("In Branch, the next_state is %d", next_state);
