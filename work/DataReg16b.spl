@@ -1,0 +1,9 @@
+[Inputs]
+clock
+=data_in[15:0]=
+[Outputs]
+=data_out[15:0]=
+[BiDir]
+[ATTRIBUTES]
+VeriModel DataReg16b
+
