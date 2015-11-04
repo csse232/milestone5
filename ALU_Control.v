@@ -42,34 +42,42 @@ module ALU_Control(
 					0://add
 					begin
 						out = add;
+						$display("add");
 					end
 					3'b001://sub
 					begin
 						out = sub;
+						$display("sub");
 					end
 					3'b010://or
 					begin
 						out = aluOr;
+						$display("or");
 					end
 					3'b011://and
 					begin
 						out = aluAnd;
+						$display("and");
 					end
 					3'b100://sll
 					begin
 						out = sl;
+						$display("sl");
 					end
 					3'b101://srl
 					begin
 						out = srl;
+						$display("srl");
 					end
 					3'b110://sra
 					begin
 						out = sra;
+						$display("sra");
 					end
 					3'b111://slt
 					begin
 						out = slt;
+						$display("slt");
 					end
 				endcase
 			end
@@ -79,14 +87,17 @@ module ALU_Control(
 					3'b100:
 						begin
 							out = sl;
+							$display("sl");
 						end
 					3'b101:
 						begin
 							out = srl;
+							$display("srl");
 						end
 					3'b110:
 						begin
 							out = sra;
+							$display("sra");
 						end
 				endcase
 			end
