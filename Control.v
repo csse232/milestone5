@@ -25,7 +25,7 @@ module MIPS_control_unit (ALUOp,
 								  BranchCond
                           );
 
-   output [1:0] ALUOp;
+   output [2:0] ALUOp;
    output [1:0] PCSrc;
    output [1:0] SrcB;
    output       SrcA;
@@ -50,7 +50,7 @@ module MIPS_control_unit (ALUOp,
    input        Reset;
 	input [2:0]  funk;
 
-   reg [1:0]    ALUOp;
+   reg [2:0]    ALUOp;
    reg [1:0]    PCSrc;
    reg [1:0]    SrcB;
    reg          SrcA;
