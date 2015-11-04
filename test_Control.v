@@ -97,37 +97,37 @@ module test_Control;
 		
 		
 		Opcode = 0; funk = 0; //generic R-Type
-		$display("\n\nTESTING R-TYPES\n\n");#100;
+		$display("\n\nTESTING R-TYPES\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b0001; //imm
-		$display("\n\nTESTING IMMEDIATES\n\n");#100;
+		$display("\n\nTESTING IMMEDIATES\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b0010; //lw
-		$display("\n\nTESTING LW\n\n");#100;
+		$display("\n\nTESTING LW\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b0011; //sw
-		$display("\n\nTESTING SW\n\n");#100;
+		$display("\n\nTESTING SW\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b1001; //j
-		$display("\n\nTESTING JUMP\n\n");#100;
+		$display("\n\nTESTING JUMP\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b1010; //jal
-		$display("\n\nTESTING JAL\n\n");#100;
+		$display("\n\nTESTING JAL\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b1011; //jr
-		$display("\n\nTESTING JR\n\n");#100;
+		$display("\n\nTESTING JR\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b0111; //beq
-		$display("\n\nTESTING BEQ\n\n");#100;
+		$display("\n\nTESTING BEQ\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b1000; //bne
-		$display("\n\nTESTING BNE\n\n");#100;
+		$display("\n\nTESTING BNE\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b1100; funk = 3'b000; //in
-		$display("\n\nTESTING IN\n\n");#100;
+		$display("\n\nTESTING IN\n\n"); Reset=1; #10; Reset=0; #100;
 		
 		Opcode = 4'b1100; funk = 3'b001; //out
-		$display("\n\nTESTING OUT\n\n");#100;
+		$display("\n\nTESTING OUT\n\n"); Reset=1; #10; Reset=0; #100;
 	end
       
 endmodule

@@ -404,23 +404,23 @@ module MIPS_control_unit (ALUOp,
 			jr:
 				begin
 					next_state = Fetch;
-					$display("In Jal2, the next_state is %d", next_state);
+					$display("In jr, the next_state is %d", next_state);
 				end
 			jump:
 				begin
 					next_state = Fetch;
-					$display("In Fetch, the next_state is %d", next_state);
+					$display("In Jump, the next_state is %d", next_state);
 				end
 			 
 			brancheq:
             begin
                next_state = Fetch;
-               $display("In Branch, the next_state is %d", next_state);
+               $display("In Brancheq, the next_state is %d", next_state);
             end
 			branchne:
             begin
                next_state = Fetch;
-               $display("In Branch, the next_state is %d", next_state);
+               $display("In Branchne, the next_state is %d", next_state);
             end
 			
 			in:
