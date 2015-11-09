@@ -1,3 +1,0 @@
-verilog work "../SignExtender12to16.v"
-verilog work "../test_SE12to16.v"
-verilog work "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"
