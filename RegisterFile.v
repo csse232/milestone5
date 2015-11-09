@@ -25,8 +25,8 @@ module RegisterFile(
     input [15:0] writeFile,
     input clock,
     input regWrite,
-    output [15:0] readData1,
-    output [15:0] readData2
+    output reg [15:0] readData1,
+    output reg [15:0] readData2
     );
 	 
 reg [15:0] register [0:7];

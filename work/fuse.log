@@ -1,0 +1,23 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/griseous/Documents/csse232/Milestone5/work/test_Control_isim_beh.exe -prj /home/griseous/Documents/csse232/Milestone5/work/test_Control_beh.prj work.test_Control work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/griseous/Documents/csse232/Milestone5/work/../Control.v" into library work
+Analyzing Verilog file "/home/griseous/Documents/csse232/Milestone5/work/../test_Control.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:189 - "/home/griseous/Documents/csse232/Milestone5/work/../test_Control.v" Line 53: Size mismatch in connection of port <ALUOp>. Formal port size is 3-bit while actual signal size is 2-bit.
+Completed static elaboration
+Fuse Memory Usage: 94716 KB
+Fuse CPU Usage: 930 ms
+Compiling module MIPS_control_unit
+Compiling module test_Control
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 3 Verilog Units
+Built simulation executable /home/griseous/Documents/csse232/Milestone5/work/test_Control_isim_beh.exe
+Fuse Memory Usage: 1179356 KB
+Fuse CPU Usage: 950 ms
+GCC CPU Usage: 270 ms

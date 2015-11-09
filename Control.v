@@ -14,10 +14,10 @@ module MIPS_control_unit (ALUOp,
 //                        PCWriteCond,
                           PCSrc,
                           Opcode,
-                          current_state,
-                          next_state,
+                         // current_state,
+                          //next_state,
                           CLK,
-                          Reset,
+//                          Reset,
 								  funk,
 								  
 								  MemSrc,
@@ -38,8 +38,8 @@ module MIPS_control_unit (ALUOp,
    output       IRWrite;
    output       PCWrite;
  //output       PCWriteCond;
-   output [3:0] current_state;
-   output [3:0] next_state;
+   //output [3:0] current_state;
+   //output [3:0] next_state;
 	output		 MemSrc;
 	output       OutputWrite;
 	output       BranchCond;
@@ -47,7 +47,7 @@ module MIPS_control_unit (ALUOp,
 
    input [3:0]  Opcode;
    input        CLK;
-   input        Reset;
+ //  input        Reset;
 	input [2:0]  funk;
 
    reg [2:0]    ALUOp;
@@ -92,11 +92,11 @@ module MIPS_control_unit (ALUOp,
 	parameter    out = 17;
 
    //register calculation
-   always @ (posedge CLK, posedge Reset)
+   always @ (posedge CLK)//, posedge Reset)
      begin
-        if (Reset)
+        /*if (Reset)
           current_state = Fetch;
-        else 
+        else */
           current_state = next_state;
      end
 

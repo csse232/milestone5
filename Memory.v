@@ -23,7 +23,7 @@ module Memory(
     input MemWrite,
     input MemRead,
     input [15:0] WriteData,
-    output [15:0] MemOut,
+    output reg [15:0] MemOut,
     input [15:0] MemIn
     );
 reg [15:0] memory [0:255]; //unsure if this is the correct value¸ may be 2 to the power of 16 -1
