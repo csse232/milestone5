@@ -22,12 +22,14 @@ module PC(
     input [15:0] in,
     output reg [15:0] out,
     input clock,
-    input PCWrite
+    input PCWrite,
+	 input branchCond,
+	 input isZero
     );
 initial out = 0;
 always @ (posedge clock)
 begin
-	if(PCWrite==1)
+	if(PCWrite==1 || (BranchCond & isZero))
 	begin
 		out = in;
 	end

@@ -22,8 +22,8 @@ module InstructionRegister(
     input [15:0] IR_in,
     input clock,
     input IRWrite,
-	 output [3:0] op, funk,
-	 output [2:0] rd, rs, rt,
+	 output [3:0] op,
+	 output [2:0] rd, rs, rt, funk,
 	 output [5:0] iImm,
 	 output [11:0] jImm
     );

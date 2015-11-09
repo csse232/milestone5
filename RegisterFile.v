@@ -29,7 +29,19 @@ module RegisterFile(
     output [15:0] readData2
     );
 	 
-reg [15:0] register [0:5/*This is an arbitrary value! TODO: Check what this should actually be*/];
+reg [15:0] register [0:7];
+
+initial readData1 = 0;
+initial readData2 = 0;
+initial register[0] = 0;
+initial register[1] = 0;
+initial register[2] = 256;//stack pointer
+initial register[3] = 0;
+initial register[4] = 0;
+initial register[5] = 0;
+initial register[6] = 0;
+initial register[7] = 0;
+
 
 always @ (posedge clock)
 begin

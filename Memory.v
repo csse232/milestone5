@@ -28,7 +28,7 @@ module Memory(
     );
 reg [15:0] memory [0:255]; //unsure if this is the correct value¸ may be 2 to the power of 16 -1
 
-always @ (posedge clock)
+always @ (MemIn)
 begin
 	if (MemRead) begin
 		MemOut = memory[MemIn];

@@ -1,6 +1,5 @@
 ISim log file
-Running: /home/griseous/Documents/csse232/Milestone5/work/test_ALUControl_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/griseous/Documents/csse232/Milestone5/work/test_ALUControl_isim_beh.wdb 
-INFO: There is another simulation running in the same directory. Using database file name isim1.wdb.
+Running: /home/griseous/Documents/csse232/Milestone5/work/test_SE12to16_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/griseous/Documents/csse232/Milestone5/work/test_SE12to16_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 ----------------------------------------------------------------------
 INFO:Security:50 - The XILINXD_LICENSE_FILE environment variable is set to '2100@clive.csse.rose-hulman.edu'.
@@ -20,18 +19,5 @@ Time resolution is 1 ps
 # wave add /
 # run 1000 ns
 Simulator is doing circuit initialization process.
-add
 Finished circuit initialization process.
-ALUOp 0:
-sub
-or
-and
-sl
-srl
-sra
-slt
-
-Shifts (1):
-sl
-srl
-sra
+# exit 0

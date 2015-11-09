@@ -23,7 +23,8 @@ module ALU(
     input [15:0] in2,
     input [2:0] control,
     input clock,
-    output reg [15:0]result
+    output reg [15:0]result,
+	 output reg isZero
     );
 
 always @ (posedge clock)
@@ -38,6 +39,7 @@ begin
 	/*sra*/6: result = $signed(in1) >>> in2;
 	/*slt*/7: result = ($signed(in1 - in2) < 0) ? 1 : 0;
 	endcase
+	isZero = (in1 - in2) == 0;
 end
 
 endmodule

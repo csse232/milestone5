@@ -32,6 +32,7 @@ module test_ALU;
 
 	// Outputs
 	wire [15:0] result;
+	wire isZero;
 
 	// Instantiate the Unit Under Test (UUT)
 	ALU uut (
@@ -39,7 +40,8 @@ module test_ALU;
 		.in2(in2), 
 		.control(control), 
 		.clock(clock), 
-		.result(result)
+		.result(result),
+		.isZero(isZero)
 	);
 	
 	initial begin //clock
